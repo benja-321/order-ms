@@ -1,0 +1,16 @@
+server:
+  port: 8081
+spring:
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/orders
+    driver-class-name: org.postgresql.Driver
+
+productClient:
+  url: "localhost:8080"
