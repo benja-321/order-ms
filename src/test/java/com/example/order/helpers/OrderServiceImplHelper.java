@@ -1,6 +1,7 @@
 package com.example.order.helpers;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import com.example.order.domain.Order;
@@ -15,8 +16,8 @@ public class OrderServiceImplHelper {
 		Order newOrder = new Order();
 		newOrder.setId(1L);
 		newOrder.setActive(true);
-		newOrder.setDate(LocalDate.now());
-		newOrder.setShipmentDate(LocalDate.now());
+		newOrder.setDate(new Date());
+		newOrder.setShipmentDate(new Date());
 		newOrder.setTotal(10.0);
 		return newOrder;
 	}
@@ -35,14 +36,14 @@ public class OrderServiceImplHelper {
 		orderDetailDto.setCodigoProducto(1L);
 		
 		OrderDto orderDto = new OrderDto();
-		orderDto.setFechaEnvio(LocalDate.now());
+		orderDto.setFechaEnvio(new Date());
 		orderDto.setDetalleOrden(List.of(orderDetailDto));
 		return orderDto;
 	}
 	
 	public static OrderDto createOrderDtoUpdates() {
 		OrderDto orderDto = new OrderDto();
-		orderDto.setFechaEnvio(LocalDate.now());
+		orderDto.setFechaEnvio(new Date());
 		orderDto.setDetalleOrden(List.of());
 		return orderDto;
 	}
@@ -53,7 +54,7 @@ public class OrderServiceImplHelper {
 		orderDetailDto.setCodigoProducto(2L);
 		
 		OrderDto orderDto = new OrderDto();
-		orderDto.setFechaEnvio(LocalDate.now());
+		orderDto.setFechaEnvio(new Date());
 		orderDto.setDetalleOrden(List.of(orderDetailDto));
 		return orderDto;
 	}
@@ -62,8 +63,8 @@ public class OrderServiceImplHelper {
 		Order newOrder = new Order();
 		newOrder.setId(1L);
 		newOrder.setActive(true);
-		newOrder.setDate(LocalDate.now());
-		newOrder.setShipmentDate(LocalDate.now());
+		newOrder.setDate(new Date());
+		newOrder.setShipmentDate(new Date());
 		newOrder.setTotal(20.0);
 		return newOrder;
 	}
@@ -89,8 +90,8 @@ public class OrderServiceImplHelper {
 		Order newOrder = new Order();
 		newOrder.setId(1L);
 		newOrder.setActive(false);
-		newOrder.setDate(LocalDate.now());
-		newOrder.setShipmentDate(LocalDate.now());
+		newOrder.setDate(new Date());
+		newOrder.setShipmentDate(new Date());
 		newOrder.setTotal(10.0);
 		return newOrder;
 	}
