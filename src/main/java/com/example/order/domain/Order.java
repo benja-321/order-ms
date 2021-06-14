@@ -1,6 +1,7 @@
 package com.example.order.domain;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +23,9 @@ public class Order {
 	private Boolean active;
 	
 	@CreationTimestamp
-	private LocalDate date;
+	private Date date;
 	
-	private LocalDate shipmentDate;
+	private Date shipmentDate;
 	
 	private Double total;
 }

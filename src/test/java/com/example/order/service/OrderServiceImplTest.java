@@ -22,7 +22,6 @@ import com.example.order.service.feign.client.ProductsClient;
 import com.example.order.service.feign.dto.ProductResponseDto;
 import com.example.order.service.impl.OrderServiceImpl;
 
-import feign.FeignException;
 import feign.FeignException.FeignClientException;
 import javassist.NotFoundException;
 
@@ -77,32 +76,7 @@ public class OrderServiceImplTest {
 		Mockito.when(productsClient.getProductById(Mockito.anyLong())).thenThrow(FeignClientException.class);
 		
 		orderService.insert(orderDto);
-		/*try {
-			orderService.insert(orderDto);
-		} catch (FeignClientException ex) {
-			Mockito.verify(productsClient).getProductById(Mockito.anyLong());
-			throw ex;
-		}*/
 	}
-	
-	/*
-	@Test(expected = FeignException.class)
-	public void testInsertIdNotFound() throws FeignException{
-		Order newOrder = OrderServiceImplHelper.createOrder();
-		List<OrderDetail> orderDetails = List.of(OrderServiceImplHelper.createOrderDetail());
-		OrderDto orderDto = OrderServiceImplHelper.createOrderDto();
-		
-		Mockito.when(orderMapper.mapOrderDtoToOrder(orderDto)).thenReturn(newOrder);
-		Mockito.when(orderMapper.mapListOrderDetailDtoToListOrderDetail(orderDto.getDetalleOrden())).thenReturn(orderDetails);
-		Mockito.when(productsClient.getProductById(Mockito.anyLong())).thenThrow(FeignException.class);
-		
-		try {
-			orderService.insert(orderDto);
-		} catch (FeignException ex) {
-			Mockito.verify(productsClient).getProductById(Mockito.anyLong());
-			throw ex;
-		}
-	}*/
 	
 	@Test
 	public void testGetByIdSuccessfully() throws NotFoundException{
@@ -170,13 +144,6 @@ public class OrderServiceImplTest {
 		Mockito.when(orderRepository.findById(Mockito.anyLong())).thenReturn(Optional.empty());
 		
 		orderService.update(99L,updates);
-		
-		/*try {
-			orderService.update(99L,updates);
-		} catch(NotFoundException ex) {
-			Mockito.verify(orderRepository).findById(99L);
-			throw ex;
-		}*/
 	}
 	
 	@Test(expected = Exception.class)
@@ -190,31 +157,7 @@ public class OrderServiceImplTest {
 		Mockito.when(productsClient.getProductById(Mockito.anyLong())).thenThrow(FeignClientException.class);
 		
 		orderService.update(1L, updates);
-		/*try {
-			orderService.update(1L, updates);
-		} catch (FeignClientException ex) {
-			Mockito.verify(productsClient).getProductById(Mockito.anyLong());
-			throw ex;
-		}*/
 	}
-	
-	/*@Test(expected = FeignException.class)
-	public void testUpdateProductNotFound() throws FeignException, NotFoundException{
-		Order order = OrderServiceImplHelper.createOrder();
-		List<OrderDetail> orderDetails = List.of(OrderServiceImplHelper.createOrderDetailUpdates());
-		OrderDto updates = OrderServiceImplHelper.createOrderDtoUpdatesWithDetails();
-		
-		Mockito.when(orderRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(order));
-		Mockito.when(orderMapper.mapListOrderDetailDtoToListOrderDetail(updates.getDetalleOrden())).thenReturn(orderDetails);
-		Mockito.when(productsClient.getProductById(Mockito.anyLong())).thenThrow(FeignException.class);
-		
-		try {
-			orderService.update(1L, updates);
-		} catch (FeignException ex) {
-			Mockito.verify(productsClient).getProductById(Mockito.anyLong());
-			throw ex;
-		}
-	}*/
 	
 	@Test
 	public void testDeleteSuccessfully() throws NotFoundException{
@@ -231,11 +174,6 @@ public class OrderServiceImplTest {
 	public void testDeleteNotFound() throws NotFoundException{		
 		Mockito.when(orderRepository.findById(Mockito.anyLong())).thenReturn(Optional.empty());
 		
-		try {
-			orderService.delete(99L);
-		} catch(NotFoundException ex) {
-			Mockito.verify(orderRepository).findById(99L);
-			throw ex;
-		}
+		orderService.delete(99L);
 	}
 }

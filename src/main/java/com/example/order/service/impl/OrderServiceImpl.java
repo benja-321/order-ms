@@ -18,7 +18,6 @@ import com.example.order.service.feign.client.ProductsClient;
 import com.example.order.service.feign.dto.ProductResponseDto;
 
 import feign.FeignException;
-import feign.FeignException.FeignClientException;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
