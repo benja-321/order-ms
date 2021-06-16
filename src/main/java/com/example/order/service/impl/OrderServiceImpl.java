@@ -58,8 +58,12 @@ public class OrderServiceImpl implements OrderService{
 			log.error("Orden no encontrada");
 			throw new NotFoundException(String.format("La orden %d no ha sido encontrada", id));
 		}
-		List<OrderDetail> orderDetails = orderDetailRepository.findAllByOrderId(id).get();
-		return orderMapper.mapOrderAndDetailsToOrderDto(order.get(), orderDetails);
+		Optional<List<OrderDetail>> orderDetails = orderDetailRepository.findAllByOrderId(id);
+		if(orderDetails.isEmpty()) {
+			log.error("Detalles de la orden no encontrados");
+			throw new NotFoundException(String.format("Los detalles de la orden %d no han sido encontrados", id));
+		}
+		return orderMapper.mapOrderAndDetailsToOrderDto(order.get(), orderDetails.get());
 	}
 	
 	@Override

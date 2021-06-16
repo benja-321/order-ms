@@ -93,15 +93,20 @@ public class OrderServiceImplTest {
 	}
 	
 	@Test(expected = NotFoundException.class)
-	public void testGetByIdNotFound() throws NotFoundException{
+	public void testGetByIdOrderNotFound() throws NotFoundException{
 		Mockito.when(orderRepository.findById(Mockito.anyLong())).thenReturn(Optional.empty());
 		
-		try {
-			orderService.getById(99L);
-		} catch(NotFoundException ex) {
-			Mockito.verify(orderRepository).findById(99L);
-			throw ex;
-		}
+		orderService.getById(99L);
+	}
+	
+	@Test(expected = NotFoundException.class)
+	public void testGetByIdOrderDetailsNotFound() throws NotFoundException{
+		Order newOrder = OrderServiceImplHelper.createOrder();
+		
+		Mockito.when(orderRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(newOrder));
+		Mockito.when(orderDetailRepository.findById(Mockito.anyLong())).thenReturn(Optional.empty());
+		
+		orderService.getById(99L);
 	}
 	
 	@Test
