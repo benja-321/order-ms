@@ -48,11 +48,19 @@ public class OrderController {
 		return new ResponseEntity<>(orderService.getById(id),HttpStatus.OK);
 	}
 	
+	@ApiOperation(
+			value = "Actualizar Orden",
+		    nickname = "Actualizar Orden",
+		    response = String.class)
 	@PutMapping("/{id}")
 	public ResponseEntity<OrderDto> updateOrder(@PathVariable("id") Long id, @RequestBody OrderDto updates) throws Exception{
 		return new ResponseEntity<>(orderService.update(id,updates),HttpStatus.OK);
 	}
 	
+	@ApiOperation(
+			value = "Eliminar Orden",
+		    nickname = "Eliminar Orden",
+		    response = String.class)
 	@PatchMapping("/{id}")
 	public ResponseEntity<String> deleteOrder(@PathVariable("id") Long id) throws NotFoundException{
 		return new ResponseEntity<>(orderService.delete(id), HttpStatus.OK);
